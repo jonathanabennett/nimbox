@@ -10,10 +10,13 @@ warned.**
 
 ## Installation
 
-Nimbox can be installed through [Nimble][nimble], Nim's package manager:
+This version of Nimbox should be downloaded manually and then installed
+through [Nimble][nimble], Nim's package manager:
 
 ```shell
-nimble install nimbox
+git clone https://github.com/dom96/nimbox.git
+cd nimbox
+nimble install .
 ```
 
 [rb]: https://github.com/gchp/rustbox
