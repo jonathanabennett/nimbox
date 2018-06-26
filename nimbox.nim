@@ -168,6 +168,24 @@ proc print*[T](_: Nimbox, x, y: int, text: string,
     tbChangeCell(cast[cint](x + i), yInt, c.uint32, fgInt, bgInt)
     i.inc()
 
+proc print*[T](_: Nimbox, x, y: int, text: string,
+               fg: int, bg: int, style: T = styNone) =
+  var styleInt: int
+  when style is Style:
+    styleInt = ord(style)
+  elif style is int:
+    styleInt = style
+
+  var
+    fgInt = cast[uint16](fg or styleInt)
+    bgInt = cast[uint16](bg)
+    yInt = cast[cint](y)
+
+  var i = 0
+  for c in runes(text):
+    tbChangeCell(cast[cint](x + i), yInt, c.uint32, fgInt, bgInt)
+    i.inc()
+
 proc print*(nb: Nimbox, x, y: int, text: string,
             fg: Color = clrDefault, bg: Color = clrDefault) =
   print(nb, x, y, text, fg, bg, styNone)
