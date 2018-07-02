@@ -5,6 +5,8 @@ import unicode
 type
   Nimbox* = object of RootObj
 
+  Colors256* = range[0..255]
+
   Modifier* {.pure.} = enum
     Ctrl
     Alt
@@ -169,7 +171,7 @@ proc print*[T](_: Nimbox, x, y: int, text: string,
     i.inc()
 
 proc print*[T](_: Nimbox, x, y: int, text: string,
-               fg: int, bg: int, style: T = styNone) =
+               fg: Colors256, bg: Colors256, style: T = styNone) =
   var styleInt: int
   when style is Style:
     styleInt = ord(style)
